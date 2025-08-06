@@ -7,43 +7,43 @@
     <!-- Sidebar -->
     <aside class="fixed top-0 left-0 z-50 w-64 h-screen transition-transform duration-300 ease-in-out lg:translate-x-0"
         [class.-translate-x-full]="!isSidebarOpen()" [class.translate-x-0]="isSidebarOpen()">
-        <div class="h-full px-3 py-4 overflow-y-auto bg-background border-r border-border">
+        <div class="h-full px-3 py-4 overflow-y-auto bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 backdrop-blur-sm border-r border-gray-700/50 shadow-2xl">
 
             <!-- Logo y empresa -->
             <div class="flex items-center mb-8 px-2">
-                <div class="w-10 h-10 bg-main rounded-lg flex items-center justify-center mr-3">
+                <div class="w-10 h-10 bg-gradient-to-br from-main to-secondary rounded-xl flex items-center justify-center mr-3 shadow-lg">
                     <span class="text-white font-bold text-lg">F</span>
                 </div>
                 <div>
-                    <div class="text-xs text-gray-400 uppercase tracking-wide">FAVA</div>
-                    <div class="text-xs bg-yellow-500 text-black px-2 py-0.5 rounded text-center font-medium">DEV-QA
+                    <div class="text-xs text-gray-300 uppercase tracking-wide font-medium">FAVA</div>
+                    <div class="text-xs bg-gradient-to-r from-yellow-400 to-yellow-500 text-black px-2 py-0.5 rounded-md text-center font-medium shadow-sm">DEV-QA
                     </div>
                 </div>
             </div>
 
             <!-- Información del usuario -->
-            <div class="flex items-center mb-8 px-2">
-                <div class="w-12 h-12 bg-gray-600 rounded-full flex items-center justify-center mr-3">
-                    <svg class="w-6 h-6 text-gray-300" fill="currentColor" viewBox="0 0 24 24">
+            <div class="flex items-center mb-8 px-2 bg-gray-800/30 rounded-xl p-3 backdrop-blur-sm">
+                <div class="w-12 h-12 bg-gradient-to-br from-gray-600 to-gray-700 rounded-full flex items-center justify-center mr-3 shadow-lg">
+                    <svg class="w-6 h-6 text-gray-200" fill="currentColor" viewBox="0 0 24 24">
                         <path
                             d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
                     </svg>
                 </div>
                 <div class="flex-1">
-                    <div class="font-medium text-white">IGNACIO STAGNARO</div>
-                    <div class="text-sm text-gray-400">{{'ignacjostagnaro@gmail.com'}}</div>
-                    <div class="text-sm text-main font-medium">V1.25.524</div>
+                    <div class="font-medium text-white text-sm">IGNACIO STAGNARO</div>
+                    <div class="text-xs text-gray-300">{{'ignacjostagnaro@gmail.com'}}</div>
+                    <div class="text-xs text-main font-medium">V1.25.524</div>
                 </div>
             </div>
 
             <!-- Sección ACCESO -->
             <div class="mb-6">
-                <div class="text-xs text-gray-400 uppercase tracking-wide mb-3 px-2">ACCESO</div>
+                <div class="text-xs text-gray-300 uppercase tracking-wide mb-3 px-2 font-medium">ACCESO</div>
                 <ul class="space-y-1">
                     <li>
                         <button (click)="logout()"
-                            class="flex items-center w-full px-2 py-2 text-sm text-gray-300 rounded-lg hover:bg-border hover:text-white transition-colors">
-                            <svg class="w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 24 24">
+                            class="flex items-center w-full px-3 py-3 text-sm text-gray-300 rounded-xl hover:bg-gradient-to-r hover:from-red-600/20 hover:to-red-500/20 hover:text-white transition-all duration-200 group">
+                            <svg class="w-5 h-5 mr-3 group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 24 24">
                                 <path
                                     d="M16 17v-3H9v-4h7V7l5 5-5 5M14 2a2 2 0 012 2v2h-2V4H4v16h10v-2h2v2a2 2 0 01-2 2H4a2 2 0 01-2-2V4a2 2 0 012-2h10z" />
                             </svg>
@@ -55,12 +55,12 @@
 
             <!-- Sección ÁREA DE USUARIO -->
             <div>
-                <div class="text-xs text-gray-400 uppercase tracking-wide mb-3 px-2">ÁREA DE USUARIO</div>
-                <ul class="space-y-1">
+                <div class="text-xs text-gray-300 uppercase tracking-wide mb-3 px-2 font-medium">ÁREA DE USUARIO</div>
+                <ul class="space-y-2">
                     <li>
                         <button (click)="navigateTo('/dashboard')"
-                            class="flex items-center w-full px-2 py-2 text-sm text-white bg-main rounded-lg transition-colors">
-                            <svg class="w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 24 24">
+                            class="flex items-center w-full px-3 py-3 text-sm text-white bg-gradient-to-r from-main to-secondary rounded-xl transition-all duration-200 shadow-lg hover:shadow-xl transform hover:scale-[1.02] group">
+                            <svg class="w-5 h-5 mr-3 group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 24 24">
                                 <path
                                     d="M4 13h6a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1zM14 3h6a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1zM4 21h6a1 1 0 0 0 1-1v-3a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1zM14 11h6a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1h-6a1 1 0 0 1-1-1v-8a1 1 0 0 1 1-1z" />
                             </svg>
@@ -69,8 +69,8 @@
                     </li>
                     <li>
                         <button
-                            class="flex items-center w-full px-2 py-2 text-sm text-gray-300 rounded-lg hover:bg-border hover:text-white transition-colors">
-                            <svg class="w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 24 24">
+                            class="flex items-center w-full px-3 py-3 text-sm text-gray-300 rounded-xl hover:bg-gradient-to-r hover:from-gray-700/50 hover:to-gray-600/50 hover:text-white transition-all duration-200 group">
+                            <svg class="w-5 h-5 mr-3 group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 24 24">
                                 <path
                                     d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
                             </svg>
@@ -79,8 +79,8 @@
                     </li>
                     <li>
                         <button
-                            class="flex items-center w-full px-2 py-2 text-sm text-gray-300 rounded-lg hover:bg-border hover:text-white transition-colors">
-                            <svg class="w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 24 24">
+                            class="flex items-center w-full px-3 py-3 text-sm text-gray-300 rounded-xl hover:bg-gradient-to-r hover:from-gray-700/50 hover:to-gray-600/50 hover:text-white transition-all duration-200 group">
+                            <svg class="w-5 h-5 mr-3 group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 24 24">
                                 <path
                                     d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
                             </svg>
@@ -92,8 +92,8 @@
 
             <!-- Logo FAVA en la parte inferior -->
             <div class="absolute bottom-4 left-3 right-3">
-                <div class="text-center">
-                    <div class="text-lg font-bold text-gray-400">FAVA</div>
+                <div class="text-center bg-gray-800/30 rounded-xl py-2 backdrop-blur-sm">
+                    <div class="text-lg font-bold bg-gradient-to-r from-gray-300 to-gray-400 bg-clip-text text-transparent">FAVA</div>
                 </div>
             </div>
         </div>
@@ -102,9 +102,9 @@
     <!-- Contenido principal -->
     <div class="lg:ml-64">
         <!-- Header móvil -->
-        <header class="lg:hidden bg-background border-b border-border px-4 py-3">
+        <header class="lg:hidden bg-gradient-to-r from-gray-900 to-gray-800 border-b border-gray-700/50 px-4 py-3 backdrop-blur-sm">
             <div class="flex items-center justify-between">
-                <button (click)="toggleSidebar()" class="p-2 rounded-lg text-gray-300 hover:bg-border">
+                <button (click)="toggleSidebar()" class="p-2 rounded-xl text-gray-300 hover:bg-gray-700/50 transition-colors">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M4 6h16M4 12h16M4 18h16" />
@@ -112,10 +112,10 @@
                 </button>
 
                 <div class="flex items-center">
-                    <div class="w-8 h-8 bg-main rounded-lg flex items-center justify-center mr-2">
+                    <div class="w-8 h-8 bg-gradient-to-br from-main to-secondary rounded-lg flex items-center justify-center mr-2 shadow-lg">
                         <span class="text-white font-bold">F</span>
                     </div>
-                    <span class="text-xs bg-yellow-500 text-black px-2 py-0.5 rounded font-medium">DEV-QA</span>
+                    <span class="text-xs bg-gradient-to-r from-yellow-400 to-yellow-500 text-black px-2 py-0.5 rounded-md font-medium shadow-sm">DEV-QA</span>
                 </div>
             </div>
         </header>
