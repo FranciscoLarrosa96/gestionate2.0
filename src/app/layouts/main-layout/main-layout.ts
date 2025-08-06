@@ -1,6 +1,7 @@
-import { Component, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet, Router } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-main-layout',
@@ -11,7 +12,7 @@ import { RouterOutlet, Router } from '@angular/router';
 })
 export class MainLayoutComponent {
   isSidebarOpen = signal(false);
-
+  private _authService = inject(AuthService);
   constructor(private router: Router) {}
 
   toggleSidebar() {
@@ -24,6 +25,7 @@ export class MainLayoutComponent {
 
   logout() {
     // Aquí implementarás la lógica de logout
+    this._authService.clearToken();
     this.router.navigate(['/login']);
   }
 
