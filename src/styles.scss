@@ -90,7 +90,7 @@ input:-webkit-autofill {
   align-items: center;
   height: 100%;
   width: 100%;
-  background-image: url('assets/fava_red.avif');
+  background-image: url('assets/fondo_1.avif');
   background-repeat: no-repeat;
   background-size: cover;
   z-index: 9999;
@@ -228,13 +228,13 @@ body.no-scrollbar::-webkit-scrollbar {
 
 
 /* 👻 Fix para el autofill de Chrome que rompe el fondo */
-// input:-webkit-autofill {
-//   box-shadow: 0 0 0px 1000px rgba(255, 255, 255, 0.1) inset !important;
-//   -webkit-box-shadow: 0 0 0px 1000px rgba(255, 255, 255, 0.1) inset !important;
-//   -webkit-text-fill-color: #ffffff !important;
-//   caret-color: white;
-//   transition: background-color 5000s ease-in-out 0s;
-// }
+input:-webkit-autofill {
+  box-shadow: 0 0 0px 1000px rgba(255, 255, 255, 0.1) inset !important;
+  -webkit-box-shadow: 0 0 0px 1000px rgba(255, 255, 255, 0.1) inset !important;
+  -webkit-text-fill-color: #ffffff !important;
+  caret-color: white;
+  transition: background-color 5000s ease-in-out 0s;
+}
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { margin: 0; }
