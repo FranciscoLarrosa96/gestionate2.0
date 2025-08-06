@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Grupo Fava</title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+  <!-- ✅ FontAwesome Optimizado -->
+  <link rel="preconnect" href="https://kit.fontawesome.com" crossorigin />
+  <link rel="dns-prefetch" href="https://kit.fontawesome.com" />
+</head>
+
+<body>
+  <div class="relative splashScreen">
+    <!-- Capa oscura encima del fondo para contraste -->
+    <div class="absolute inset-0 bg-black/70"></div>
+
+    <!-- Contenedor con animaciones -->
+    <div class="h-auto flex flex-col items-center justify-center p-4 z-50">
+      <!-- Logo con optimización LCP -->
+      <div class="logo-container">
+        <img src="assets/loading.webp" alt="Portal Biz Logo" class="splash-logo" fetchpriority="high"
+          decoding="async" loading="eager">
+      </div>
+
+      <!-- Puntos de carga animados -->
+      <div class="loading-dots mt-8">
+        <div class="dot dot-1"></div>
+        <div class="dot dot-2"></div>
+        <div class="dot dot-3"></div>
+      </div>
+
+    </div>
+  </div>
+  <app-root></app-root>
+  <!-- ✅ FontAwesome Script -->
+  <script src="https://kit.fontawesome.com/cb0353dbc0.js" crossorigin="anonymous"></script>
+</body>
+
+</html>
