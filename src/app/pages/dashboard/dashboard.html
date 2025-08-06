@@ -9,7 +9,7 @@
   <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 mb-8">
     
     <!-- Card Vacaciones -->
-    <div class="bg-gradient-to-br from-white to-orange-50/30 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-orange-100/50 transform hover:scale-[1.02] backdrop-blur-sm">
+    <div class="bg-gradient-to-br from-white to-orange-50/30 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-orange-100/50 transform hover:scale-[1.02] backdrop-blur-sm h-64 flex flex-col">
       <div class="flex items-center justify-between mb-6">
         <h3 class="text-lg font-semibold text-gray-800">Vacaciones</h3>
         <div class="w-10 h-10 bg-gradient-to-br from-orange-400 to-orange-500 rounded-xl flex items-center justify-center shadow-lg">
@@ -18,17 +18,14 @@
           </span>
         </div>
       </div>
-      <div class="text-center">
+      <div class="text-center flex-1 flex flex-col justify-center">
         <div class="text-6xl font-bold bg-gradient-to-br from-main to-secondary bg-clip-text text-transparent mb-3">{{vacacionesData.saldo}}</div>
         <div class="text-gray-500 font-medium">Días de saldo</div>
-      </div>
-      <div class="mt-4 h-2 bg-gray-200 rounded-full overflow-hidden">
-        <div class="h-full bg-gradient-to-r from-orange-400 to-orange-500 rounded-full" style="width: 65%"></div>
       </div>
     </div>
 
     <!-- Card Historial de vacaciones -->
-    <div class="bg-gradient-to-br from-white to-blue-50/30 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-blue-100/50 transform hover:scale-[1.02] backdrop-blur-sm">
+    <div class="bg-gradient-to-br from-white to-blue-50/30 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-blue-100/50 transform hover:scale-[1.02] backdrop-blur-sm h-64 flex flex-col">
       <div class="flex items-center mb-6">
         <div class="w-10 h-10 bg-gradient-to-br from-blue-400 to-blue-500 rounded-xl flex items-center justify-center shadow-lg mr-3">
           <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
@@ -37,7 +34,7 @@
         </div>
         <h3 class="text-lg font-semibold text-gray-800">Historial de vacaciones</h3>
       </div>
-      <div class="space-y-4">
+      <div class="space-y-4 flex-1 overflow-y-auto custom-scrollbar-blue">
         @for (periodo of historialesVacaciones; track periodo.periodo) {
           <div class="flex justify-between items-center p-3 bg-gradient-to-r from-blue-50 to-transparent rounded-xl border border-blue-100/50">
             <span class="text-gray-700 font-medium">{{periodo.periodo}}</span>
@@ -48,7 +45,7 @@
     </div>
 
     <!-- Card Formularios -->
-    <div class="bg-gradient-to-br from-white to-emerald-50/30 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-emerald-100/50 transform hover:scale-[1.02] backdrop-blur-sm">
+    <div class="bg-gradient-to-br from-white to-emerald-50/30 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-emerald-100/50 transform hover:scale-[1.02] backdrop-blur-sm h-64 flex flex-col">
       <div class="flex items-center mb-6">
         <div class="w-10 h-10 bg-gradient-to-br from-emerald-400 to-emerald-500 rounded-xl flex items-center justify-center shadow-lg mr-3">
           <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
@@ -57,7 +54,7 @@
         </div>
         <h3 class="text-lg font-semibold text-gray-800">Formularios</h3>
       </div>
-      <div class="space-y-3">
+      <div class="space-y-3 flex-1 overflow-y-auto custom-scrollbar-green">
         @for (formulario of formularios; track formulario.nombre) {
           <div class="flex justify-between items-center p-3 bg-gradient-to-r from-emerald-50 to-transparent rounded-xl border border-emerald-100/50 hover:border-emerald-200 hover:bg-emerald-50/50 transition-all duration-200 group">
             <span class="text-gray-700 font-medium">{{formulario.nombre}}</span>
@@ -72,7 +69,7 @@
     </div>
 
     <!-- Card Días de estudio -->
-    <div class="bg-gradient-to-br from-white to-purple-50/30 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-purple-100/50 transform hover:scale-[1.02] backdrop-blur-sm">
+    <div class="bg-gradient-to-br from-white to-purple-50/30 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-purple-100/50 transform hover:scale-[1.02] backdrop-blur-sm h-64 flex flex-col">
       <div class="flex items-center mb-6">
         <div class="w-10 h-10 bg-gradient-to-br from-purple-400 to-purple-500 rounded-xl flex items-center justify-center shadow-lg mr-3">
           <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
@@ -81,17 +78,14 @@
         </div>
         <h3 class="text-lg font-semibold text-gray-800">Días de estudio</h3>
       </div>
-      <div class="text-center">
+      <div class="text-center flex-1 flex flex-col justify-center">
         <div class="text-6xl font-bold bg-gradient-to-br from-blue-500 to-purple-600 bg-clip-text text-transparent mb-3">{{diasEstudioData.saldo}}</div>
         <div class="text-gray-500 font-medium">Días de saldo</div>
-      </div>
-      <div class="mt-4 h-2 bg-gray-200 rounded-full overflow-hidden">
-        <div class="h-full bg-gradient-to-r from-purple-400 to-blue-500 rounded-full" style="width: 80%"></div>
       </div>
     </div>
 
     <!-- Card Historial de días de estudio -->
-    <div class="bg-gradient-to-br from-white to-gray-50/30 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-200/50 transform hover:scale-[1.02] backdrop-blur-sm md:col-span-2 xl:col-span-1">
+    <div class="bg-gradient-to-br from-white to-gray-50/30 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-200/50 transform hover:scale-[1.02] backdrop-blur-sm h-64 flex flex-col md:col-span-2 xl:col-span-1">
       <div class="flex items-center mb-6">
         <div class="w-10 h-10 bg-gradient-to-br from-gray-400 to-gray-500 rounded-xl flex items-center justify-center shadow-lg mr-3">
           <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
@@ -100,7 +94,7 @@
         </div>
         <h3 class="text-lg font-semibold text-gray-800">Historial de días de estudio</h3>
       </div>
-      <div class="text-center py-8">
+      <div class="text-center flex-1 flex flex-col justify-center">
         <div class="w-16 h-16 bg-gradient-to-br from-gray-200 to-gray-300 rounded-full flex items-center justify-center mx-auto mb-4">
           <svg class="w-8 h-8 text-gray-500" fill="currentColor" viewBox="0 0 24 24">
             <path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17Z"/>

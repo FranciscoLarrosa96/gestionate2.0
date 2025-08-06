@@ -1,0 +1,69 @@
+/* Estilos personalizados para scrollbar */
+.custom-scrollbar {
+  /* Para Firefox */
+  scrollbar-width: thin;
+  scrollbar-color: #e5e7eb #f9fafb;
+}
+
+/* Para Webkit (Chrome, Safari, Edge) */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #f1f5f9;
+  border-radius: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, #cbd5e1, #94a3b8);
+  border-radius: 10px;
+  transition: all 0.3s ease;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, #94a3b8, #64748b);
+  transform: scale(1.1);
+}
+
+/* Scrollbar específico para formularios (verde) */
+.custom-scrollbar-green::-webkit-scrollbar {
+  width: 6px;
+}
+
+.custom-scrollbar-green::-webkit-scrollbar-track {
+  background: #f0fdf4;
+  border-radius: 10px;
+}
+
+.custom-scrollbar-green::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, #86efac, #4ade80);
+  border-radius: 10px;
+  transition: all 0.3s ease;
+}
+
+.custom-scrollbar-green::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, #4ade80, #22c55e);
+  transform: scale(1.1);
+}
+
+/* Scrollbar específico para vacaciones (azul) */
+.custom-scrollbar-blue::-webkit-scrollbar {
+  width: 6px;
+}
+
+.custom-scrollbar-blue::-webkit-scrollbar-track {
+  background: #eff6ff;
+  border-radius: 10px;
+}
+
+.custom-scrollbar-blue::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, #93c5fd, #3b82f6);
+  border-radius: 10px;
+  transition: all 0.3s ease;
+}
+
+.custom-scrollbar-blue::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
+  transform: scale(1.1);
+}
