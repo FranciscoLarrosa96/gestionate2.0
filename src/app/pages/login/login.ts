@@ -1,20 +1,17 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormBuilder, FormsModule, UntypedFormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormsModule, ReactiveFormsModule, UntypedFormGroup, Validators } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-login',
-  imports: [CommonModule, FormsModule, RouterModule],
+  imports: [CommonModule, ReactiveFormsModule, RouterModule],
   templateUrl: './login.html',
   styleUrl: './login.scss'
 })
 export class Login {
-  username: string = '';
-  password: string = '';
-  rememberMe: boolean = false;
-  showPassword: boolean = false;
-  isLoading: boolean = false;
+  showPassword = signal<boolean>(false);
+  isLoading = signal<boolean>(false);
   loginForm!: UntypedFormGroup;
 
   private fb = inject(FormBuilder);
@@ -29,22 +26,20 @@ export class Login {
   }
 
   togglePassword(): void {
-    this.showPassword = !this.showPassword;
+    this.showPassword.set(!this.showPassword());
   }
 
   onLogin(): void {
 
-    this.isLoading = true;
-    
+    this.isLoading.set(true);
+
     // Simular proceso de login
     setTimeout(() => {
-      console.log('Login attempt:', {
-        username: this.username,
-        password: this.password,
-        rememberMe: this.rememberMe
-      });
+      console.log('Login successful:', this.loginForm.value);
       
+
       this.router.navigate(['/dashboard']);
+      this.isLoading.set(false);
     }, 2000);
   }
 }
