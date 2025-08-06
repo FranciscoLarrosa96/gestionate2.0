@@ -4,11 +4,12 @@ import { FormBuilder, ReactiveFormsModule, UntypedFormGroup, Validators } from '
 import { Router, RouterModule } from '@angular/router';
 import { LoginService } from '../../services/login.service';
 import { AuthService } from '../../services/auth.service';
-import { Subject } from 'rxjs';
+import { Subject, takeUntil } from 'rxjs';
+import { MaterialDesignModule } from '../../shared/material-design.module';
 
 @Component({
   selector: 'app-login',
-  imports: [CommonModule, ReactiveFormsModule, RouterModule],
+  imports: [CommonModule, ReactiveFormsModule, RouterModule, MaterialDesignModule],
   templateUrl: './login.html',
   styleUrl: './login.scss'
 })
@@ -16,6 +17,7 @@ export class Login implements OnDestroy, OnInit{
   showPassword = signal<boolean>(false);
   isLoading = signal<boolean>(false);
   loginForm!: UntypedFormGroup;
+  errorType = signal<string>('adError');
   private _unsubscribeAll: Subject<any> = new Subject<any>();
   private _fb = inject(FormBuilder);
   private _router = inject(Router);
@@ -49,6 +51,9 @@ export class Login implements OnDestroy, OnInit{
   onLogin(): void {
     this.isLoading.set(true);
     this._loginService.login(this.loginForm.get('username')?.value, this.encodePassword())
+      .pipe(
+        takeUntil(this._unsubscribeAll)
+      )
       .subscribe({
         next: (response) => {
           console.log('Login successful:', response.token);
@@ -59,7 +64,7 @@ export class Login implements OnDestroy, OnInit{
           this.isLoading.set(false);
         },
         error: (error) => {
-          console.error('Login failed:', error);
+          console.error('Login failed =>:', error.error);
           // Manejar errores de login, como mostrar un mensaje al usuario
           this.isLoading.set(false);
         }
