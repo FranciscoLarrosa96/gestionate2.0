@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormBuilder, FormsModule, UntypedFormGroup, Validators } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 
 @Component({
@@ -15,19 +15,24 @@ export class Login {
   rememberMe: boolean = false;
   showPassword: boolean = false;
   isLoading: boolean = false;
+  loginForm!: UntypedFormGroup;
+
+  private fb = inject(FormBuilder);
   private router = inject(Router);
 
-  constructor() {}
+  constructor() {
+    this.loginForm = this.fb.group({
+      username: ['', Validators.required],
+      password: ['', Validators.required],
+      rememberMe: [false]
+    });
+  }
 
   togglePassword(): void {
     this.showPassword = !this.showPassword;
   }
 
   onLogin(): void {
-    if (!this.username || !this.password) {
-      alert('Por favor, completa todos los campos requeridos.');
-      return;
-    }
 
     this.isLoading = true;
     
