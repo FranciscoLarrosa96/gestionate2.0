@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { MaterialDesignModule } from '../../shared/material-design.module';
 
 interface VacacionesData {
   saldo: number;
@@ -24,7 +25,7 @@ interface HistorialEstudio {
 
 @Component({
   selector: 'app-dashboard',
-  imports: [CommonModule],
+  imports: [CommonModule, MaterialDesignModule],
   templateUrl: './dashboard.html',
   styleUrl: './dashboard.scss'
 })

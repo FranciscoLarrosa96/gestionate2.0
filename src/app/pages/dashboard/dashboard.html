@@ -10,13 +10,15 @@
     <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 mb-8">
 
         <!-- Card Vacaciones -->
-        <div
-            class="bg-gradient-to-br from-white to-orange-50/30 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-orange-100/50 transform  backdrop-blur-sm h-64 flex flex-col" data-aos="fade-up" data-aos-delay="100">
+        <div class="bg-gradient-to-br from-white to-orange-50/30 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-orange-100/50 transform  backdrop-blur-sm h-64 flex flex-col"
+            data-aos="fade-up" data-aos-delay="100">
             <div class="flex items-center justify-between mb-6">
                 <h3 class="text-lg font-semibold text-gray-800">Vacaciones</h3>
                 <div
                     class="w-10 h-10 bg-gradient-to-br from-orange-400 to-orange-500 rounded-xl flex items-center justify-center shadow-lg">
-                    <span class="w-5 h-5 bg-white rounded-full flex items-center justify-center">
+                    <span class="w-5 h-5 bg-white rounded-full flex items-center justify-center" matTooltip="*Importante! Los saldos en negativo
+                                representan días de vacaciones adeudados, los cuales se restarán del saldo próximo a
+                                acreditarse desde el mes de Octubre." [matTooltipPosition]="'right'">
                         <span class="text-orange-500 text-xs font-bold">!</span>
                     </span>
                 </div>
@@ -30,8 +32,8 @@
         </div>
 
         <!-- Card Historial de vacaciones -->
-        <div
-            class="bg-gradient-to-br from-white to-blue-50/30 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-blue-100/50 transform  backdrop-blur-sm h-64 flex flex-col" data-aos="fade-up" data-aos-delay="200">
+        <div class="bg-gradient-to-br from-white to-blue-50/30 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-blue-100/50 transform  backdrop-blur-sm h-64 flex flex-col"
+            data-aos="fade-up" data-aos-delay="200">
             <div class="flex items-center mb-6">
                 <div
                     class="w-10 h-10 bg-gradient-to-br from-blue-400 to-blue-500 rounded-xl flex items-center justify-center shadow-lg mr-3">
@@ -54,8 +56,8 @@
         </div>
 
         <!-- Card Formularios -->
-        <div
-            class="bg-gradient-to-br from-white to-emerald-50/30 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-emerald-100/50 transform  backdrop-blur-sm h-64 flex flex-col" data-aos="fade-up" data-aos-delay="300">
+        <div class="bg-gradient-to-br from-white to-emerald-50/30 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-emerald-100/50 transform  backdrop-blur-sm h-64 flex flex-col"
+            data-aos="fade-up" data-aos-delay="300">
             <div class="flex items-center mb-6">
                 <div
                     class="w-10 h-10 bg-gradient-to-br from-emerald-400 to-emerald-500 rounded-xl flex items-center justify-center shadow-lg mr-3">
@@ -84,8 +86,8 @@
         </div>
 
         <!-- Card Días de estudio -->
-        <div
-            class="bg-gradient-to-br from-white to-purple-50/30 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-purple-100/50 transform  backdrop-blur-sm h-64 flex flex-col" data-aos="fade-up" data-aos-delay="400">
+        <div class="bg-gradient-to-br from-white to-purple-50/30 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-purple-100/50 transform  backdrop-blur-sm h-64 flex flex-col"
+            data-aos="fade-up" data-aos-delay="400">
             <div class="flex items-center mb-6">
                 <div
                     class="w-10 h-10 bg-gradient-to-br from-purple-400 to-purple-500 rounded-xl flex items-center justify-center shadow-lg mr-3">
@@ -104,8 +106,8 @@
         </div>
 
         <!-- Card Historial de días de estudio -->
-        <div
-            class="bg-gradient-to-br from-white to-gray-50/30 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-200/50 transform  backdrop-blur-sm h-64 flex flex-col md:col-span-2 xl:col-span-1" data-aos="fade-up" data-aos-delay="500">
+        <div class="bg-gradient-to-br from-white to-gray-50/30 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-200/50 transform  backdrop-blur-sm h-64 flex flex-col md:col-span-2 xl:col-span-1"
+            data-aos="fade-up" data-aos-delay="500">
             <div class="flex items-center mb-6">
                 <div
                     class="w-10 h-10 bg-gradient-to-br from-gray-400 to-gray-500 rounded-xl flex items-center justify-center shadow-lg mr-3">
