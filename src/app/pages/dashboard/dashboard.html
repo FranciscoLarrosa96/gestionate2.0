@@ -1,0 +1,68 @@
+<div class="p-6 bg-background min-h-screen">
+  <!-- Header del Dashboard -->
+  <div class="mb-8">
+    <h1 class="text-2xl font-bold text-white mb-2">Bienvenido Ignacio Stagnaro</h1>
+  </div>
+
+  <!-- Grid de Cards -->
+  <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 mb-8">
+    
+    <!-- Card Vacaciones -->
+    <div class="bg-white rounded-lg p-6 shadow-lg">
+      <div class="flex items-center justify-between mb-4">
+        <h3 class="text-lg font-medium text-gray-800">Vacaciones</h3>
+        <div class="w-8 h-8 bg-orange-100 rounded-full flex items-center justify-center">
+          <span class="w-4 h-4 bg-orange-500 rounded-full flex items-center justify-center text-white text-xs font-bold">!</span>
+        </div>
+      </div>
+      <div class="text-center">
+        <div class="text-5xl font-bold text-main mb-2">{{vacacionesData.saldo}}</div>
+        <div class="text-gray-500">Saldo</div>
+      </div>
+    </div>
+
+    <!-- Card Historial de vacaciones -->
+    <div class="bg-white rounded-lg p-6 shadow-lg">
+      <h3 class="text-lg font-medium text-gray-800 mb-4">Historial de vacaciones</h3>
+      <div class="space-y-3">
+        <div *ngFor="let periodo of historialesVacaciones" class="flex justify-between items-center">
+          <span class="text-gray-600">{{periodo.periodo}}</span>
+          <span class="font-medium text-gray-800">{{periodo.dias}}</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card Formularios -->
+    <div class="bg-white rounded-lg p-6 shadow-lg">
+      <h3 class="text-lg font-medium text-gray-800 mb-4">Formularios</h3>
+      <div class="space-y-3">
+        <div *ngFor="let formulario of formularios" class="flex justify-between items-center">
+          <span class="text-gray-600">{{formulario.nombre}}</span>
+          <button class="text-main hover:text-secondary transition-colors">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card Días de estudio -->
+    <div class="bg-white rounded-lg p-6 shadow-lg">
+      <h3 class="text-lg font-medium text-gray-800 mb-4">Días de estudio</h3>
+      <div class="text-center">
+        <div class="text-5xl font-bold text-blue-500 mb-2">{{diasEstudioData.saldo}}</div>
+        <div class="text-gray-500">Saldo</div>
+      </div>
+    </div>
+
+    <!-- Card Historial de días de estudio -->
+    <div class="bg-white rounded-lg p-6 shadow-lg">
+      <h3 class="text-lg font-medium text-gray-800 mb-4">Historial de días de estudio:</h3>
+      <div class="text-center text-gray-500">
+        <p>{{historialEstudio.mensaje}}</p>
+      </div>
+    </div>
+
+  </div>
+</div>
