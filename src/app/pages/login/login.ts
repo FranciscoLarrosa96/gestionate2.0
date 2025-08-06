@@ -1,10 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-login',
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, RouterModule],
   templateUrl: './login.html',
   styleUrl: './login.scss'
 })
@@ -14,6 +15,7 @@ export class Login {
   rememberMe: boolean = false;
   showPassword: boolean = false;
   isLoading: boolean = false;
+  private router = inject(Router);
 
   constructor() {}
 
@@ -37,9 +39,7 @@ export class Login {
         rememberMe: this.rememberMe
       });
       
-      // Aquí irá la lógica real de autenticación
-      this.isLoading = false;
-      alert('¡Login exitoso! (demo)');
+      this.router.navigate(['/dashboard']);
     }, 2000);
   }
 }
