@@ -6,6 +6,8 @@ export class AuthService {
 
   setToken(token: string) {
     this.token.set(token);
+    console.log(`Token set: ${token}`);
+    
     localStorage.setItem('token', token);
   }
 

@@ -2,7 +2,7 @@ import { ApplicationConfig, inject, provideBrowserGlobalErrorListeners, provideE
 import { provideRouter } from '@angular/router';
 
 import { routes } from './app.routes';
-import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClient, withFetch } from '@angular/common/http';
 import { SplashService } from './services/splash-service.service';
 
 export const appConfig: ApplicationConfig = {
@@ -10,7 +10,7 @@ export const appConfig: ApplicationConfig = {
     provideBrowserGlobalErrorListeners(),
     provideZonelessChangeDetection(),
     provideRouter(routes),
-    provideHttpClient(),
+    provideHttpClient(withFetch()),
     provideEnvironmentInitializer(() => inject(SplashService))
   ]
 };
