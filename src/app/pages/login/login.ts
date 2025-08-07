@@ -1,11 +1,13 @@
-import { Component, inject, OnDestroy, OnInit, signal } from '@angular/core';
+import { Component, effect, inject, OnDestroy, OnInit, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, ReactiveFormsModule, UntypedFormGroup, Validators } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { LoginService } from '../../services/login.service';
 import { AuthService } from '../../services/auth.service';
-import { Subject, takeUntil } from 'rxjs';
+import { concatMap, Subject, takeUntil } from 'rxjs';
 import { MaterialDesignModule } from '../../shared/material-design.module';
+import { UserService } from '../../services/user.service';
+import { TokenDecode } from '../../interfaces/token.interface';
 
 @Component({
   selector: 'app-login',
@@ -13,16 +15,18 @@ import { MaterialDesignModule } from '../../shared/material-design.module';
   templateUrl: './login.html',
   styleUrl: './login.scss'
 })
-export class Login implements OnDestroy, OnInit{
+export class Login implements OnDestroy, OnInit {
   showPassword = signal<boolean>(false);
   isLoading = signal<boolean>(false);
   loginForm!: UntypedFormGroup;
-  errorType = signal<string>('adError');
+  errorType = signal<string>('');
   private _unsubscribeAll: Subject<any> = new Subject<any>();
   private _fb = inject(FormBuilder);
   private _router = inject(Router);
   private _loginService = inject(LoginService);
   private _authService = inject(AuthService);
+  private _userSvc = inject(UserService);
+
   constructor() {
     this.loginForm = this._fb.group({
       username: ['', Validators.required],
@@ -30,6 +34,15 @@ export class Login implements OnDestroy, OnInit{
       rememberMe: [false]
     });
   }
+
+  /**
+   * Detecta tipo de error
+   */
+  errorTypeChange = effect(() => {
+    if (this._loginService.errorType().includes('Las credenciales ingresadas no existen en LDAP')) {
+      this.errorType.set('invalidCredentials');
+    }
+  });
 
 
   ngOnInit(): void {
@@ -52,23 +65,57 @@ export class Login implements OnDestroy, OnInit{
     this.isLoading.set(true);
     this._loginService.login(this.loginForm.get('username')?.value, this.encodePassword())
       .pipe(
-        takeUntil(this._unsubscribeAll)
+        takeUntil(this._unsubscribeAll),
+        concatMap((responseLogin) => {
+          if (responseLogin === null) {
+            this.errorType.set('adError');
+            this.isLoading.set(false);
+            return [];
+          }
+          // Si la respuesta es válida, se guarda el token
+          this._authService.setToken(responseLogin.token);
+          // Luego se obtiene el perfil del usuario
+          let decodedToken: TokenDecode = this.decodeJwtToken(responseLogin.token.split('Bearer ')[1]);
+          return this._userSvc.getDataProfile(decodedToken.payload.legajo, responseLogin.token);
+        })
       )
       .subscribe({
         next: (response) => {
-          console.log('Login successful:', response.token);
-          // Aquí puedes manejar la respuesta del login, como guardar el token o redirigir
-          // this._router.navigate(['/dashboard']);
+
           this._authService.setToken(response.token);
           this._router.navigate(['/dashboard']);
           this.isLoading.set(false);
         },
         error: (error) => {
           console.error('Login failed =>:', error.error);
-          // Manejar errores de login, como mostrar un mensaje al usuario
+          this.errorType.set('invalidCredentials');
           this.isLoading.set(false);
         }
       })
+  }
+
+  /**
+   * Decodes a JWT token.
+   * @param token 
+   * @returns 
+   */
+  decodeJwtToken(token: string): TokenDecode {
+    const [header, payload, signature] = token.split('.');
+
+    const decodedHeader = JSON.parse(this.base64UrlDecode(header));
+    const decodedPayload = JSON.parse(this.base64UrlDecode(payload));
+
+    return { header: decodedHeader, payload: decodedPayload, signature };
+  }
+
+  /**
+   * Decodes a base64 URL string.
+   * @param base64Url 
+   * @returns 
+   */
+  base64UrlDecode(base64Url: string): string {
+    const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+    return atob(base64);
   }
 
   /**

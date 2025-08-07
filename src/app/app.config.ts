@@ -2,15 +2,16 @@ import { ApplicationConfig, inject, provideBrowserGlobalErrorListeners, provideE
 import { provideRouter } from '@angular/router';
 
 import { routes } from './app.routes';
-import { provideHttpClient, withFetch } from '@angular/common/http';
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { SplashService } from './services/splash-service.service';
+import { TokenInterceptor } from './interceptors/token.interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
     provideZonelessChangeDetection(),
     provideRouter(routes),
-    provideHttpClient(withFetch()),
+    provideHttpClient(withInterceptors([TokenInterceptor])),
     provideEnvironmentInitializer(() => inject(SplashService))
   ]
 };

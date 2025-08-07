@@ -65,29 +65,31 @@
             </div>
             }
             <!-- Errores -->
-          @switch (errorType()) {
-            @case ('adError') {
-            <mat-error data-aos="fade-right" class="text-main">
-              Error de Active Directory, Comuniquese con RRHH
-            </mat-error>
-            }
-            @case ('invalidCredentials') {
-            <mat-error data-aos="fade-right" class="text-main">
-              El usuario o la contraseña son incorrectos
-            </mat-error>
-            }
-            @case ('legajoNull') {
-            <mat-error data-aos="fade-right" class="text-main">
-              Usuario no encontrado, Comuniquese con RRHH.
-            </mat-error>
-            }
-            @case ('bajaColaborador') {
-            <mat-error  data-aos="fade-right" class="text-main">>
-              Tu acceso fue desactivado.
-              Si creés que es un error, contactá a RRHH.
-            </mat-error>
-            }
-          }
+            <div class="errors mt-4">
+              @switch (errorType()) {
+                @case ('adError') {
+                <mat-error data-aos="fade-right" class="text-main">
+                  Error de Active Directory, Comuniquese con RRHH
+                </mat-error>
+                }
+                @case ('invalidCredentials') {
+                <mat-error data-aos="fade-right" class="text-main">
+                  El usuario o la contraseña son incorrectos
+                </mat-error>
+                }
+                @case ('legajoNull') {
+                <mat-error data-aos="fade-right" class="text-main">
+                  Usuario no encontrado, Comuniquese con RRHH.
+                </mat-error>
+                }
+                @case ('bajaColaborador') {
+                <mat-error data-aos="fade-right" class="text-main">>
+                  Tu acceso fue desactivado.
+                  Si creés que es un error, contactá a RRHH.
+                </mat-error>
+                }
+              }
+            </div>
           </div>
 
           <!-- Recordar sesión -->

@@ -1,5 +1,5 @@
 export interface ResponseInterface {
-    rol: string;
+    rol: string[];
     token: string;
     username: string;
     sucursal: string;
