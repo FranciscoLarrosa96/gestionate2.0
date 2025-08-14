@@ -17,7 +17,7 @@ export class App {
     this.configDarkMode();
     this.updateDarkModeClass();
     AOS.init({
-      duration: 600,
+      duration: 800,
       easing: 'ease-in-out',
       once: false, // solo se anima una vez
     });

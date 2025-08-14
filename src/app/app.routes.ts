@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { AuthGuard } from './guards/auth.guard';
+import { perfilResolver } from './services/user.service';
 
 export const routes: Routes = [
     {
@@ -17,9 +18,22 @@ export const routes: Routes = [
         children: [
             {
                 path: 'dashboard',
-                canActivate: [AuthGuard],
+                canActivate: [AuthGuard(['admin', 'rrhh', 'lider', 'comun'])],
                 loadComponent: () => import('./pages/dashboard/dashboard').then(m => m.Dashboard),
             },
+            {
+                path: 'legajo/:id',
+                canActivate: [AuthGuard(['admin', 'rrhh', 'lider', 'comun'])],
+                loadComponent: () => import('./pages/legajo/legajo').then(m => m.Legajo),
+                resolve: {
+                   perfil: perfilResolver
+                }
+            },
+            {
+                path: 'equipo',
+                canActivate: [AuthGuard(['admin', 'rrhh', 'lider', 'comun'])],
+                loadComponent: () => import('./pages/equipo/equipo').then(m => m.Equipo),
+            }
         ]
     },
     {

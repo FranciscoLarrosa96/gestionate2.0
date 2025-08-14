@@ -4,10 +4,11 @@ import { FormBuilder, ReactiveFormsModule, UntypedFormGroup, Validators } from '
 import { Router, RouterModule } from '@angular/router';
 import { LoginService } from '../../services/login.service';
 import { AuthService } from '../../services/auth.service';
-import { concatMap, Subject, takeUntil } from 'rxjs';
+import { concatMap, EMPTY, forkJoin, map, Subject, takeUntil } from 'rxjs';
 import { MaterialDesignModule } from '../../shared/material-design.module';
 import { UserService } from '../../services/user.service';
 import { TokenDecode } from '../../interfaces/token.interface';
+import { ResponseInterface } from '../../interfaces/response.interface';
 
 @Component({
   selector: 'app-login',
@@ -66,23 +67,30 @@ export class Login implements OnDestroy, OnInit {
     this._loginService.login(this.loginForm.get('username')?.value, this.encodePassword())
       .pipe(
         takeUntil(this._unsubscribeAll),
-        concatMap((responseLogin) => {
-          if (responseLogin === null) {
+        concatMap((res:ResponseInterface) => {
+          if (!res) {
             this.errorType.set('adError');
             this.isLoading.set(false);
-            return [];
+            return EMPTY; // Cortamos el flujo
           }
-          // Si la respuesta es válida, se guarda el token
-          this._authService.setToken(responseLogin.token);
-          // Luego se obtiene el perfil del usuario
-          let decodedToken: TokenDecode = this.decodeJwtToken(responseLogin.token.split('Bearer ')[1]);
-          return this._userSvc.getDataProfile(decodedToken.payload.legajo, responseLogin.token);
+
+          // Guardamos token
+          this._authService.setToken(res.token);
+          const decoded = this.decodeJwtToken(res.token.split('Bearer ')[1]);
+
+          // Armamos observables dependientes
+          const profile$ = this._userSvc.getDataProfile(decoded.payload.legajo);
+          const rolUser$ = this._userSvc.getRole(decoded.payload.legajo);
+
+          // Ejecutamos en paralelo y devolvemos resultado combinado
+          return forkJoin({ profile: profile$, rolUser: rolUser$ })
+            .pipe(map(({ profile, rolUser }) => ({ responseLogin: res, profile, rolUser })));
         })
       )
       .subscribe({
-        next: (response) => {
-
-          this._authService.setToken(response.token);
+        next: ({ responseLogin, profile, rolUser }) => {
+          this.checkAndSetRole(rolUser, responseLogin);
+          this._userSvc.setProfile(profile);
           this._router.navigate(['/dashboard']);
           this.isLoading.set(false);
         },
@@ -92,6 +100,24 @@ export class Login implements OnDestroy, OnInit {
           this.isLoading.set(false);
         }
       })
+  }
+
+  /**
+   * Checks and sets the user role.
+   * @param rolUser 
+   * @param responseLogin 
+   */
+  checkAndSetRole(rolUser: string[], responseLogin: ResponseInterface): void {
+    // Si no incluye comun significa que es Lider
+    if (!rolUser.includes('comun') && (!responseLogin.rol.includes('ROL_RRHH') || !responseLogin.rol.includes('ADMIN-G'))) {
+      this._userSvc.setRoles(['lider']);
+    } else if (rolUser.includes('comun') && (!responseLogin.rol.includes('ROL_RRHH') && !responseLogin.rol.includes('ADMIN-G'))) {
+      this._userSvc.setRoles(['comun']);
+    } else if (responseLogin.rol.includes('ROL_RRHH') && !responseLogin.rol.includes('ADMIN-G')) {
+      this._userSvc.setRoles(['rrhh']);
+    } else {
+      this._userSvc.setRoles(['admin']);
+    }
   }
 
   /**
